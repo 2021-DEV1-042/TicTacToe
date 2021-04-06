@@ -64,6 +64,16 @@ public class TicTacToeTest {
 		ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO);
 
 	}
+	
+	@Test
+	public void gameShouldReturnTrueIfAnyHorizontalRowIsSame()  {
+		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
+		board.addPlayer(INDEX_TWO, INDEX_ONE);
+		board.addPlayer(INDEX_ZERO, INDEX_ONE);
+		board.addPlayer(INDEX_ONE, INDEX_TWO);
+		board.addPlayer(INDEX_ZERO, INDEX_TWO);
+		assertThat(board.checkRowsForWin(), CoreMatchers.is(true));
+	}
 
 
 }

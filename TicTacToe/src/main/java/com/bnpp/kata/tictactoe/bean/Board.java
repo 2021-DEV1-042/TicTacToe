@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 public class Board {
 
 	private static final char INDEX_ZERO = 0;
+	private static final char INDEX_ONE = 1;
 	private static final char INDEX_TWO = 2;
 	private static final char INDEX_THREE = 3;
 	private static final char FIRST_PLAYER_X = 'X';
@@ -41,4 +42,22 @@ public class Board {
 		return (row > INDEX_TWO || row < INDEX_ZERO || column > INDEX_TWO || column < INDEX_ZERO) ? false : true;
 	}
 
+	public boolean checkRowsForWin() {
+		
+		for (int row = INDEX_ZERO; row < INDEX_THREE; row++) {
+			if ((board[row][INDEX_ZERO] != '\0') && (board[row][INDEX_ZERO] == board[row][INDEX_ONE]) 	&& (board[row][INDEX_ONE] == board[row][INDEX_TWO])) {
+				if (checkRowColumnContent(board[row][INDEX_ZERO], board[row][INDEX_ONE],
+						board[row][INDEX_TWO])) {
+					return true;
+				}
+			}
+		}
+		return false;
+
+	}
+	
+	private boolean checkRowColumnContent(char c1, char c2, char c3) {
+		
+		return ((c1 != '\0') && (c1 == c2) && (c2 == c3));
+	}
 }
