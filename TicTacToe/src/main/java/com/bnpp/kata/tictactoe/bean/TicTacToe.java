@@ -13,11 +13,12 @@ public class TicTacToe {
 	
 	private static final String INPUT_DATA_EXCEPTION = "The given  input data is not in the range of 0 to 2 ";
 	private static final String POSITION_NOT_EMPTY_EXCEPTION = "The given position is occupied by another player";
+	private static final String GAME_CONTINOUS = "Game Continues";
 
 	@Autowired
 	public Board board;
 
-	public void addPlayer(int row, int column) throws PositionOutOfRangeException, PositionNotAvailableException   {
+	public String addPlayer(int row, int column) throws PositionOutOfRangeException, PositionNotAvailableException   {
 
 		if (!board.validateUserInputData(row, column)) {
 			throw new PositionOutOfRangeException(INPUT_DATA_EXCEPTION);
@@ -28,10 +29,21 @@ public class TicTacToe {
 		}
 
 		board.addPlayer(row, column);
+		String gameResult;
+		if (checkWinner()) {
+			gameResult = String.valueOf(board.getCurrentPlayer());
+		} else {
+			gameResult = GAME_CONTINOUS;
+		}
+		return gameResult;
 	}
 
 	public char getPosition(int row, int column) {
 		return board.getPosition(row, column);
+	}
+	
+	public boolean checkWinner() {
+		return board.checkColumnsForWin() || board.checkRowsForWin() || board.checkDiagonalsForWin();
 	}
 
 }

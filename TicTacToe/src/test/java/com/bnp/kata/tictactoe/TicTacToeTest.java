@@ -22,6 +22,7 @@ public class TicTacToeTest {
 	private static final int INDEX_ONE = 1;
 	private static final int INDEX_TWO = 2;
 	private static final int INDEX_THREE = 3;
+	private static final String FIRST_PLAYER_X = "X";
 
 	@Autowired
 	private TicTacToe ticTacToe;
@@ -76,7 +77,7 @@ public class TicTacToeTest {
 	}
 	
 	@Test
-	public void gameShouldReturnTrueIfAnyVerticalRowIsSame() throws Exception {
+	public void gameShouldReturnTrueIfAnyVerticalRowIsSame()  {
 		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
 		board.addPlayer(INDEX_TWO, INDEX_TWO);
 		board.addPlayer(INDEX_ONE, INDEX_ZERO);
@@ -86,7 +87,7 @@ public class TicTacToeTest {
 	}
 	
 	@Test
-	public void gameShouldReturnTrueIfLeftDiagonalPositionIsSame() throws Exception {
+	public void gameShouldReturnTrueIfLeftDiagonalPositionIsSame()  {
 		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
 		board.addPlayer(INDEX_ONE, INDEX_TWO);
 		board.addPlayer(INDEX_ONE, INDEX_ONE);
@@ -96,7 +97,7 @@ public class TicTacToeTest {
 	}
 	
 	@Test
-	public void gameShouldReturnTrueIfRightDiagonalPositionIsSame() throws Exception {
+	public void gameShouldReturnTrueIfRightDiagonalPositionIsSame()  {
 		board.addPlayer(INDEX_ZERO, INDEX_TWO);
 		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
 		board.addPlayer(INDEX_ONE, INDEX_ONE);
@@ -119,5 +120,13 @@ public class TicTacToeTest {
 		assertThat(board.checkIfBoardFullyOccupied(), CoreMatchers.is(true));
 	}
 
+	@Test
+	public void shouldReturnWinnerNameIfAnyHorizontalRowIsMarkedBySamePlayer() throws Exception {
+		ticTacToe.addPlayer(INDEX_ZERO, INDEX_ZERO);
+		ticTacToe.addPlayer(INDEX_TWO, INDEX_ONE);
+		ticTacToe.addPlayer(INDEX_ZERO, INDEX_ONE);
+		ticTacToe.addPlayer(INDEX_ONE, INDEX_TWO);
+		assertThat(ticTacToe.addPlayer(INDEX_ZERO, INDEX_TWO), CoreMatchers.is(FIRST_PLAYER_X));
+	}
 
 }
