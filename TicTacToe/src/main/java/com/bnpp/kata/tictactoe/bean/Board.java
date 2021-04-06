@@ -38,26 +38,33 @@ public class Board {
 	}
 
 	public boolean validateUserInputData(int row, int column) {
-
 		return (row > INDEX_TWO || row < INDEX_ZERO || column > INDEX_TWO || column < INDEX_ZERO) ? false : true;
 	}
 
 	public boolean checkRowsForWin() {
-		
 		for (int row = INDEX_ZERO; row < INDEX_THREE; row++) {
-			if ((board[row][INDEX_ZERO] != '\0') && (board[row][INDEX_ZERO] == board[row][INDEX_ONE]) 	&& (board[row][INDEX_ONE] == board[row][INDEX_TWO])) {
-				if (checkRowColumnContent(board[row][INDEX_ZERO], board[row][INDEX_ONE],
-						board[row][INDEX_TWO])) {
+			if ((board[row][INDEX_ZERO] != '\0') && (board[row][INDEX_ZERO] == board[row][INDEX_ONE]) && (board[row][INDEX_ONE] == board[row][INDEX_TWO])) {
+				if (checkRowColumnContent(board[row][INDEX_ZERO], board[row][INDEX_ONE], board[row][INDEX_TWO])) {
 					return true;
 				}
 			}
 		}
 		return false;
-
+	}
+	
+	public boolean checkColumnsForWin() {
+		for (int column = INDEX_ZERO; column < INDEX_THREE; column++) {
+			if ((board[column][INDEX_ZERO] != '\0') && (board[INDEX_ZERO][column] == board[INDEX_ONE][column]) && (board[INDEX_ONE][column] == board[INDEX_TWO][column])) {
+				if (checkRowColumnContent(board[INDEX_ZERO][column], board[INDEX_ONE][column],
+						board[INDEX_TWO][column])) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	private boolean checkRowColumnContent(char c1, char c2, char c3) {
-		
 		return ((c1 != '\0') && (c1 == c2) && (c2 == c3));
 	}
 }
