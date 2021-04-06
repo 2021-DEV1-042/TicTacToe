@@ -26,4 +26,8 @@ public class TicTacToe {
 	public char getCurrentPlayer() {
 		return currentPlayer;
 	}
+
+	public boolean checkSelectedPositionIsEmptyOrNot(int row, int column) {
+		return board[row][column] == '\0';
+	}
 }

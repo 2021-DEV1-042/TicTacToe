@@ -15,7 +15,7 @@ public class TicTacToeTest {
 		ticTacToe.addPlayer(1, 1);
 		assertThat(ticTacToe.getPosition(1, 1), CoreMatchers.is('X'));
 	}
-	
+
 	@Test
 	public void playersShouldPlayAlternatively() {
 		TicTacToe ticTacToe = new TicTacToe();
@@ -23,6 +23,12 @@ public class TicTacToeTest {
 		assertThat(ticTacToe.getCurrentPlayer(), CoreMatchers.is('X'));
 		ticTacToe.addPlayer(1, 1);
 		assertThat(ticTacToe.getCurrentPlayer(), CoreMatchers.is('O'));
+	}
+
+	@Test
+	public void shouldReturnTrueWhenSelectedPositionIsEmpty() {
+		TicTacToe ticTacToe = new TicTacToe();
+		assertThat(ticTacToe.checkSelectedPositionIsEmptyOrNot(0, 0), CoreMatchers.is(true));
 	}
 
 }
