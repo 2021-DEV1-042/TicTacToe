@@ -3,22 +3,31 @@ package com.bnp.kata.tictactoe;
 import static org.junit.Assert.assertThat;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.bnpp.kata.tictactoe.bean.TicTacToe;
 
 public class TicTacToeTest {
+	private static final int INDEX_ZERO = 0;
+	private static final int INDEX_ONE = 1;
+
+	private TicTacToe ticTacToe;
+
+	@Before
+	public void setUp() {
+		ticTacToe = new TicTacToe();
+
+	}
 
 	@Test
 	public void playerShouldPlaceXInAnyPosition() {
-		TicTacToe ticTacToe = new TicTacToe();
-		ticTacToe.addPlayer(1, 1);
-		assertThat(ticTacToe.getPosition(1, 1), CoreMatchers.is('X'));
+		ticTacToe.addPlayer(INDEX_ONE, INDEX_ONE);
+		assertThat(ticTacToe.getPosition(INDEX_ONE, INDEX_ONE), CoreMatchers.is('X'));
 	}
 
 	@Test
 	public void playersShouldPlayAlternatively() {
-		TicTacToe ticTacToe = new TicTacToe();
 		ticTacToe.addPlayer(0, 0);
 		assertThat(ticTacToe.getCurrentPlayer(), CoreMatchers.is('X'));
 		ticTacToe.addPlayer(1, 1);
@@ -27,8 +36,7 @@ public class TicTacToeTest {
 
 	@Test
 	public void shouldReturnTrueWhenSelectedPositionIsEmpty() {
-		TicTacToe ticTacToe = new TicTacToe();
-		assertThat(ticTacToe.checkSelectedPositionIsEmptyOrNot(0, 0), CoreMatchers.is(true));
+		assertThat(ticTacToe.checkSelectedPositionIsEmptyOrNot(INDEX_ZERO, INDEX_ZERO), CoreMatchers.is(true));
 	}
 
 }
