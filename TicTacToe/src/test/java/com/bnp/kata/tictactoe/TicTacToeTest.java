@@ -84,6 +84,17 @@ public class TicTacToeTest {
 		board.addPlayer(INDEX_TWO, INDEX_ZERO);
 		assertThat(board.checkColumnsForWin(), CoreMatchers.is(true));
 	}
+	
+	@Test
+	public void gameShouldReturnTrueIfLeftDiagonalsPositionIsSame() throws Exception {
+		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
+		board.addPlayer(INDEX_ONE, INDEX_TWO);
+		board.addPlayer(INDEX_ONE, INDEX_ONE);
+		board.addPlayer(INDEX_TWO, INDEX_ONE);
+		board.addPlayer(INDEX_TWO, INDEX_TWO);
+		assertThat(board.checkDiagonalsForWin(), CoreMatchers.is(true));
+	}
+
 
 
 }

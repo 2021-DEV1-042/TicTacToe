@@ -67,4 +67,11 @@ public class Board {
 	private boolean checkRowColumnContent(char c1, char c2, char c3) {
 		return ((c1 != '\0') && (c1 == c2) && (c2 == c3));
 	}
+	
+	public boolean checkDiagonalsForWin() {
+		boolean isTrue = true;
+		return ((checkRowColumnContent(board[INDEX_ZERO][INDEX_ZERO], board[INDEX_ONE][INDEX_ONE], board[INDEX_TWO][INDEX_TWO]) == isTrue)
+				|| (checkRowColumnContent(board[INDEX_ZERO][INDEX_TWO], board[INDEX_ONE][INDEX_ONE],
+						board[INDEX_TWO][INDEX_ZERO]) == isTrue));
+	}
 }
