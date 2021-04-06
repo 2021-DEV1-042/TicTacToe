@@ -14,6 +14,7 @@ public class TicTacToe {
 	private static final String INPUT_DATA_EXCEPTION = "The given  input data is not in the range of 0 to 2 ";
 	private static final String POSITION_NOT_EMPTY_EXCEPTION = "The given position is occupied by another player";
 	private static final String GAME_CONTINOUS = "Game Continues";
+	private static final String GAME_DRAW = "The Game is Draw";
 
 	@Autowired
 	public Board board;
@@ -32,7 +33,10 @@ public class TicTacToe {
 		String gameResult;
 		if (checkWinner()) {
 			gameResult = String.valueOf(board.getCurrentPlayer());
-		} else {
+		} 
+		else if (isGameDraw()) {
+			gameResult = GAME_DRAW;
+		}else {
 			gameResult = GAME_CONTINOUS;
 		}
 		return gameResult;
@@ -45,5 +49,8 @@ public class TicTacToe {
 	public boolean checkWinner() {
 		return board.checkColumnsForWin() || board.checkRowsForWin() || board.checkDiagonalsForWin();
 	}
-
+	
+	public boolean isGameDraw() {
+		return board.checkIfBoardFullyOccupied();
+	}
 }
