@@ -11,7 +11,7 @@ import com.bnpp.kata.tictactoe.bean.TicTacToe;
 @ComponentScan({ "com.bnpp.kata.tictactoe.bean" })
 public class SpringConfigMain {
 
-	public static void main(String a[]) {
+	public static void main(String a[]) throws Exception {
 
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(SpringConfigMain.class);
 		TicTacToe ticTacToe = (TicTacToe) appContext.getBean("ticTacToe");

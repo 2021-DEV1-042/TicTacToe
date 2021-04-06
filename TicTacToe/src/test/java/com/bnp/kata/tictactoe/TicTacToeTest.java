@@ -20,6 +20,7 @@ public class TicTacToeTest {
 	private static final int INDEX_ZERO = 0;
 	private static final int INDEX_ONE = 1;
 	private static final int INDEX_TWO = 2;
+	private static final int INDEX_THREE = 3;
 
 	@Autowired
 	private TicTacToe ticTacToe;
@@ -27,7 +28,7 @@ public class TicTacToeTest {
 	private Board board;
 
 	@Test
-	public void playerShouldPlaceXInAnyPosition() {
+	public void playerShouldPlaceXInAnyPosition() throws Exception {
 		ticTacToe.addPlayer(INDEX_ONE, INDEX_ONE);
 		assertThat(ticTacToe.getPosition(INDEX_ONE, INDEX_ONE), CoreMatchers.is('X'));
 	}
@@ -48,6 +49,11 @@ public class TicTacToeTest {
 	@Test
 	public void shouldReturnTrueWhenPlayerGivenInvalidData() {
 		assertThat(board.validateUserInputData(INDEX_TWO, INDEX_ZERO), CoreMatchers.is(true));
+	}
+
+	@Test(expected = Exception.class)
+	public void shouldReturnExceptionWhenPlayerEnterIncorrectInputData() throws Exception {
+		ticTacToe.addPlayer(INDEX_THREE, INDEX_ZERO);
 	}
 
 }
