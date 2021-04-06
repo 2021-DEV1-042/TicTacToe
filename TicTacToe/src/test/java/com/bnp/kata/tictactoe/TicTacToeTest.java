@@ -5,20 +5,25 @@ import static org.junit.Assert.assertThat;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.bnpp.kata.tictactoe.bean.Board;
 import com.bnpp.kata.tictactoe.bean.TicTacToe;
 
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = { TicTacToe.class, Board.class })
 public class TicTacToeTest {
+
 	private static final int INDEX_ZERO = 0;
 	private static final int INDEX_ONE = 1;
 
+	@Autowired
 	private TicTacToe ticTacToe;
-
-	@Before
-	public void setUp() {
-		ticTacToe = new TicTacToe();
-
-	}
+	@Autowired
+	private Board board;
 
 	@Test
 	public void playerShouldPlaceXInAnyPosition() {
@@ -28,15 +33,15 @@ public class TicTacToeTest {
 
 	@Test
 	public void playersShouldPlayAlternatively() {
-		ticTacToe.addPlayer(0, 0);
-		assertThat(ticTacToe.getCurrentPlayer(), CoreMatchers.is('X'));
-		ticTacToe.addPlayer(1, 1);
-		assertThat(ticTacToe.getCurrentPlayer(), CoreMatchers.is('O'));
+		board.addPlayer(0, 0);
+		assertThat(board.getCurrentPlayer(), CoreMatchers.is('X'));
+		board.addPlayer(1, 1);
+		assertThat(board.getCurrentPlayer(), CoreMatchers.is('O'));
 	}
 
 	@Test
 	public void shouldReturnTrueWhenSelectedPositionIsEmpty() {
-		assertThat(ticTacToe.checkSelectedPositionIsEmptyOrNot(INDEX_ZERO, INDEX_ZERO), CoreMatchers.is(true));
+		assertThat(board.checkSelectedPositionIsEmpty(INDEX_ZERO, INDEX_ZERO), CoreMatchers.is(true));
 	}
 
 }
