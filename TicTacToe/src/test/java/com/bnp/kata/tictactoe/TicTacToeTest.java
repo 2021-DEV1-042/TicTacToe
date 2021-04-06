@@ -138,5 +138,16 @@ public class TicTacToeTest {
 		ticTacToe.addPlayer(INDEX_ZERO, INDEX_TWO);
 		assertThat(ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO), CoreMatchers.is(FIRST_PLAYER_X));
 	}
+	
+	@Test
+	public void shouldDeclareWinnerIfAnyDiagonalMatchOccurOnTheBoard() throws Exception {
+		ticTacToe.addPlayer(INDEX_ZERO, INDEX_ZERO);
+		ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO);
+		ticTacToe.addPlayer(INDEX_ZERO, INDEX_ONE);
+		ticTacToe.addPlayer(INDEX_ONE, INDEX_ONE);
+		ticTacToe.addPlayer(INDEX_ONE, INDEX_TWO);
+		assertThat(ticTacToe.addPlayer(INDEX_ZERO, INDEX_TWO), CoreMatchers.is(SECOND_PLAYER_O));
+	}
+
 
 }
