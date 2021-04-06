@@ -3,7 +3,6 @@ package com.bnp.kata.tictactoe;
 import static org.junit.Assert.assertThat;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,8 @@ public class TicTacToeTest {
 	private TicTacToe ticTacToe;
 	@Autowired
 	private Board board;
-
+	
+	
 	@Test
 	public void playerShouldPlaceXInAnyPosition() throws Exception {
 		ticTacToe.addPlayer(INDEX_ONE, INDEX_ONE);
@@ -55,5 +55,13 @@ public class TicTacToeTest {
 	public void shouldReturnExceptionWhenPlayerEnterIncorrectInputData() throws Exception {
 		ticTacToe.addPlayer(INDEX_THREE, INDEX_ZERO);
 	}
+	
+	@Test(expected=Exception.class)
+	public void shouldThroughExceptionWhenUserTryToFillAlreadyOccupiedPosition() throws Exception {
+		ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO);
+		ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO);
+
+	}
+
 
 }

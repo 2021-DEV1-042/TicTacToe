@@ -1,5 +1,8 @@
 package com.bnpp.kata.tictactoe.bean;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope(value="prototype")
 public class Board {
 
 	private static final char INDEX_ZERO = 0;
