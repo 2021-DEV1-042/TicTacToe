@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bnpp.kata.tictactoe.bean.Board;
 import com.bnpp.kata.tictactoe.bean.TicTacToe;
+import com.bnpp.kata.tictactoe.exception.PositionNotAvailableException;
+import com.bnpp.kata.tictactoe.exception.PositionOutOfRangeException;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { TicTacToe.class, Board.class })
@@ -51,13 +53,13 @@ public class TicTacToeTest {
 		assertThat(board.validateUserInputData(INDEX_TWO, INDEX_ZERO), CoreMatchers.is(true));
 	}
 
-	@Test(expected = Exception.class)
-	public void shouldReturnExceptionWhenPlayerEnterIncorrectInputData() throws Exception {
+	@Test(expected = PositionOutOfRangeException.class)
+	public void shouldReturnExceptionWhenPlayerEnterIncorrectInputData() throws PositionOutOfRangeException, PositionNotAvailableException  {
 		ticTacToe.addPlayer(INDEX_THREE, INDEX_ZERO);
 	}
 	
-	@Test(expected=Exception.class)
-	public void shouldThroughExceptionWhenUserTryToFillAlreadyOccupiedPosition() throws Exception {
+	@Test(expected=PositionNotAvailableException.class)
+	public void shouldThroughExceptionWhenUserTryToFillAlreadyOccupiedPosition() throws PositionOutOfRangeException, PositionNotAvailableException  {
 		ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO);
 		ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO);
 
