@@ -86,12 +86,22 @@ public class TicTacToeTest {
 	}
 	
 	@Test
-	public void gameShouldReturnTrueIfLeftDiagonalsPositionIsSame() throws Exception {
+	public void gameShouldReturnTrueIfLeftDiagonalPositionIsSame() throws Exception {
 		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
 		board.addPlayer(INDEX_ONE, INDEX_TWO);
 		board.addPlayer(INDEX_ONE, INDEX_ONE);
 		board.addPlayer(INDEX_TWO, INDEX_ONE);
 		board.addPlayer(INDEX_TWO, INDEX_TWO);
+		assertThat(board.checkDiagonalsForWin(), CoreMatchers.is(true));
+	}
+	
+	@Test
+	public void gameShouldReturnTrueIfRightDiagonalPositionIsSame() throws Exception {
+		board.addPlayer(INDEX_ZERO, INDEX_TWO);
+		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
+		board.addPlayer(INDEX_ONE, INDEX_ONE);
+		board.addPlayer(INDEX_ONE, INDEX_TWO);
+		board.addPlayer(INDEX_TWO, INDEX_ZERO);
 		assertThat(board.checkDiagonalsForWin(), CoreMatchers.is(true));
 	}
 
