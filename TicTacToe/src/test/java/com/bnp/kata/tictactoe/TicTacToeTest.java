@@ -162,6 +162,14 @@ public class TicTacToeTest {
 		ticTacToe.addPlayer(INDEX_ZERO, INDEX_ONE);
 		assertThat(ticTacToe.addPlayer(INDEX_TWO, INDEX_ZERO), CoreMatchers.is(GAME_DRAW));
 	}
+	
+	@Test
+	public void disPlayGameBoard()  {
+		board.addPlayer(INDEX_ONE, INDEX_ONE);
+		board.addPlayer(INDEX_ZERO, INDEX_TWO);
+		board.addPlayer(INDEX_ONE, INDEX_TWO);
+		board.disPlayGameBoard();
+	}
 
 
 }

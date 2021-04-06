@@ -1,5 +1,7 @@
 package com.bnpp.kata.tictactoe.bean;
 
+import java.util.logging.Logger;
+
 import org.springframework.context.annotation.Scope;
 
 @Scope(value="prototype")
@@ -13,6 +15,7 @@ public class Board {
 	private static final char SECOND_PLAYER_O = 'O';
 	private char[][] board = new char[INDEX_THREE][INDEX_THREE];
 	private char currentPlayer;
+	private static final Logger logger = Logger.getLogger(Board.class.getName());
 
 	public void addPlayer(int row, int column) {
 		currentPlayer = getNextPlayer();
@@ -86,5 +89,21 @@ public class Board {
 		}
 		return isFull;
 	}
+	
+	public void disPlayGameBoard() {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n-------------\n");
+		for (int row = INDEX_ZERO; row < INDEX_THREE; row++) {
+			builder.append("| ");
+			for (int column = INDEX_ZERO; column < INDEX_THREE; column++) {
+				builder.append(board[row][column] + " | ");
+			}
+			builder.append("\n");
+			builder.append("-------------\n");
+		}
+		logger.info(builder.toString());
+	}
+
 
 }
