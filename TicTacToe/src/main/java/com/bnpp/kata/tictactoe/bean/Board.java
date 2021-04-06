@@ -74,4 +74,17 @@ public class Board {
 				|| (checkRowColumnContent(board[INDEX_ZERO][INDEX_TWO], board[INDEX_ONE][INDEX_ONE],
 						board[INDEX_TWO][INDEX_ZERO]) == isTrue));
 	}
+	
+	public boolean checkIfBoardFullyOccupied() {
+		boolean isFull = true;
+		for (int row = INDEX_ZERO; row < INDEX_THREE; row++) {
+			for (int column = INDEX_ZERO; column < INDEX_THREE; column++) {
+				if (board[row][column] == '\0') {
+					isFull = false;
+				}
+			}
+		}
+		return isFull;
+	}
+
 }

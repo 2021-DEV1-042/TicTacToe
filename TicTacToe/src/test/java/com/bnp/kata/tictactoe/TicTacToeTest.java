@@ -105,6 +105,19 @@ public class TicTacToeTest {
 		assertThat(board.checkDiagonalsForWin(), CoreMatchers.is(true));
 	}
 
+	@Test
+	public void gameShouldReturnTureWhenBoardIsFullyOccupied() {
+		board.addPlayer(INDEX_ONE, INDEX_ONE);
+		board.addPlayer(INDEX_ZERO, INDEX_TWO);
+		board.addPlayer(INDEX_ONE, INDEX_TWO);
+		board.addPlayer(INDEX_ONE, INDEX_ZERO);
+		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
+		board.addPlayer(INDEX_TWO, INDEX_TWO);
+		board.addPlayer(INDEX_TWO, INDEX_ONE);
+		board.addPlayer(INDEX_ZERO, INDEX_ONE);
+		board.addPlayer(INDEX_TWO, INDEX_ZERO);
+		assertThat(board.checkIfBoardFullyOccupied(), CoreMatchers.is(true));
+	}
 
 
 }
