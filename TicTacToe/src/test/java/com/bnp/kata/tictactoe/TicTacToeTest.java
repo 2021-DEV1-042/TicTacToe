@@ -19,6 +19,7 @@ public class TicTacToeTest {
 
 	private static final int INDEX_ZERO = 0;
 	private static final int INDEX_ONE = 1;
+	private static final int INDEX_TWO = 2;
 
 	@Autowired
 	private TicTacToe ticTacToe;
@@ -33,15 +34,20 @@ public class TicTacToeTest {
 
 	@Test
 	public void playersShouldPlayAlternatively() {
-		board.addPlayer(0, 0);
+		board.addPlayer(INDEX_ZERO, INDEX_ZERO);
 		assertThat(board.getCurrentPlayer(), CoreMatchers.is('X'));
-		board.addPlayer(1, 1);
+		board.addPlayer(INDEX_ONE, INDEX_ONE);
 		assertThat(board.getCurrentPlayer(), CoreMatchers.is('O'));
 	}
 
 	@Test
 	public void shouldReturnTrueWhenSelectedPositionIsEmpty() {
-		assertThat(board.checkSelectedPositionIsEmpty(INDEX_ZERO, INDEX_ZERO), CoreMatchers.is(true));
+		assertThat(board.checkSelectedPositionIsEmptyOrNot(INDEX_ZERO, INDEX_ZERO), CoreMatchers.is(true));
+	}
+
+	@Test
+	public void shouldReturnTrueWhenPlayerGivenInvalidData() {
+		assertThat(board.validateUserInputData(INDEX_TWO, INDEX_ZERO), CoreMatchers.is(true));
 	}
 
 }
