@@ -2,7 +2,10 @@ package com.bnpp.kata.tictactoe.bean;
 
 public class TicTacToe {
 
-	private char[][] board = new char[3][3];
+	private static final char INDEX_THREE = 3;
+	private static final char FIRST_PLAYER_X = 'X';
+	private static final char SECOND_PLAYER_O = 'O';
+	private char[][] board = new char[INDEX_THREE][INDEX_THREE];
 	private char currentPlayer;
 
 	public void addPlayer(int row, int column) {
@@ -16,12 +19,8 @@ public class TicTacToe {
 	}
 
 	public char getNextPlayer() {
-		if ('X' == currentPlayer) {
 
-			return 'O';
-		} else {
-			return 'X';
-		}
+		return (FIRST_PLAYER_X == currentPlayer) ? SECOND_PLAYER_O : FIRST_PLAYER_X;
 	}
 
 	public char getCurrentPlayer() {
